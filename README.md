@@ -9,9 +9,8 @@ Swapping is the process of exchanging the values of two variables. While it seem
 
 1. The Temporary Variable Method (Classic)
 This is the standard approach used in most programming languages. It uses a "third glass" to hold the value.
-
-```python
 # basic_swap.py
+
 a = 5
 b = 10
 
@@ -22,20 +21,39 @@ b = temp
 2. The Arithmetic Method (No Extra Variables)
 A logic trick using math to swap values without needing extra memory.
 # math_swap.py
+
 a = a + b
 b = a - b
 a = a - b
 
+graph TD
+    Step1[a = a + b] -->|Total Sum| Step2[b = a - b]
+    Step2 -->|New B is old A| Step3[a = a - b]
+    Step3 -->|New A is old B| Done([Swap Complete])
+
 3. The Pythonic Method (Best Practice)
 Using Tuple Unpacking for clean and efficient code.
 # pythonic_swap.py
+
 a, b = b, a
 
 🎓 Advanced Application: Bubble Sort
 The most famous use of swapping is in Sorting Algorithms. Bubble Sort works by repeatedly swapping adjacent elements if they are in the wrong order.
 
+graph TD
+    Start([Start]) --> Input[List of Numbers]
+    Input --> OuterLoop{Outer Loop: i < N}
+    OuterLoop -- Yes --> InnerLoop{Inner Loop: j < N-i-1}
+    InnerLoop -- Yes --> Compare{Is List[j] > List[j+1]?}
+    Compare -- Yes --> Swap[Swap Elements]
+    Swap --> InnerLoop
+    Compare -- No --> InnerLoop
+    InnerLoop -- No --> OuterLoop
+    OuterLoop -- No --> End([End: Sorted List])
+    
 Implementation Code:
 # bubble_sort.py
+
 data = [64, 34, 25, 12, 22, 11, 90]
 n = len(data)
 
