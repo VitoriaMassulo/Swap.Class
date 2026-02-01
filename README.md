@@ -1,81 +1,99 @@
 🔄 The Art of Swapping in Python
 
 This repository is a comprehensive study of variable swapping techniques, ranging from fundamental logic to advanced sorting algorithms. 
+
 📖 Introduction
+
 Swapping is the process of exchanging the values of two variables. While it seems simple, it is the building block for data manipulation and memory management.
 
----
 🛠️ Techniques & Implementations
 
+---
+
 1. The Temporary Variable Method (Classic)
+
 This is the standard approach used in most programming languages. It uses a "third glass" to hold the value.
-# basic_swap.py
 
-a = 5
-b = 10
+#basic_swap.py
 
-temp = a
-a = b
-b = temp
+    a = 5
+    b = 10
+    temp = a
+    a = b
+    b = temp
+
+---
 
 2. The Arithmetic Method (No Extra Variables)
+
 A logic trick using math to swap values without needing extra memory.
-# math_swap.py
 
-a = a + b
-b = a - b
-a = a - b
+#math_swap.py
 
-graph TD
-    Step1[a = a + b] -->|Total Sum| Step2[b = a - b]
-    Step2 -->|New B is old A| Step3[a = a - b]
-    Step3 -->|New A is old B| Done([Swap Complete])
+```mermaid
+flowchart LR
+    Step1["a = a + b (Total Sum)"] --> Step2["b = a - b (Difference)"]
+    Step2 --> Step3["a = a - b (Remaining)"]
+    Step3 --> Result([Values Swapped!])
+ ```   
+
+
+    a = a + b
+    b = a - b
+    b = a - b
+
+---
 
 3. The Pythonic Method (Best Practice)
-Using Tuple Unpacking for clean and efficient code.
-# pythonic_swap.py
 
-a, b = b, a
+Using Tuple Unpacking for clean and efficient code.
+
+#pythonic_swap.py
+
+    a, b = b, a
+
+---
 
 🎓 Advanced Application: Bubble Sort
 The most famous use of swapping is in Sorting Algorithms. Bubble Sort works by repeatedly swapping adjacent elements if they are in the wrong order.
 
-graph TD
-    Start([Start]) --> Input[List of Numbers]
-    Input --> OuterLoop{Outer Loop: i < N}
-    OuterLoop -- Yes --> InnerLoop{Inner Loop: j < N-i-1}
-    InnerLoop -- Yes --> Compare{Is List[j] > List[j+1]?}
-    Compare -- Yes --> Swap[Swap Elements]
-    Swap --> InnerLoop
-    Compare -- No --> InnerLoop
-    InnerLoop -- No --> OuterLoop
-    OuterLoop -- No --> End([End: Sorted List])
-    
+
+```mermaid
+flowchart LR
+    Start([Start]) --> Outer[Outer Loop: Each Pass]
+    Outer --> Inner[Inner Loop: Compare Neighbors]
+    Inner --> Decision{Is A > B?}
+    Decision -- Yes --> Swap[Swap Elements]
+    Decision -- No --> Next[Move to next pair]
+    Swap --> Next
+    Next -->|End of row| Outer
+    Outer -->|All sorted| Done([End])
+```
+
+
 Implementation Code:
-# bubble_sort.py
 
-data = [64, 34, 25, 12, 22, 11, 90]
-n = len(data)
+#bubble_sort.py
 
-for i in range(n):
+    data = [64, 34, 25, 12, 22, 11, 90]
+    n = len(data)
+
+    for i in range(n):
     for j in range(0, n - i - 1):
-        if data[j] > data[j + 1]:
-            # Strategic Swap
-            data[j], data[j + 1] = data[j + 1], data[j]
 
-print("Final Result:", data)
+    if data[j] > data[j + 1]:
+
+        # Strategic Swap
+
+    data[j], data[j + 1] = data[j + 1], data[j]
+
+    print("Final Result:", data)
 
 🧠 Lessons Learned
  * Memory Management: Understanding when to use a temporary variable.
  * Algorithm Efficiency: How multiple swaps lead to an organized data structure.
  * Pythonic Syntax: Leveraging Python's unique features to write less code.
-Organized for study purposes by Vitoria Massulo
 
----
-
-
-
-
-
+ * Organized for study purposes by Vitoria Massulo
 
 
